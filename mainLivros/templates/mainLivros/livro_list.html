@@ -1,0 +1,41 @@
+{% extends 'mainLivros/base.html' %}
+
+{% block title %} Lista de livros {% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="container col-sm-8 offset-md-2">
+        <div class="card border">
+            <div class="card-header">
+                <h5 class="card-title">Cadastro de Livros</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-hover" id="tabelalivros">
+                    <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Quantidade de paginas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for livro in livro_list %}
+                        <tr>
+                            <td>{{livro.titulo}}</td>
+                            <td>{{livro.qtdPaginas}}</td>
+                            <td>
+                                <a href="{% url 'mainLivros:update' pk=livro.id %}" class="btn btn-sm btn-primary">Editar</a> 
+                                <a href="{% url 'mainLivros:detail' pk=livro.id %}" class="btn btn-sm btn-primary">Vizualizar</a>
+                                <a href="{% url 'mainLivros:delete' pk=livro.id %}" class="btn btn-sm btn-primary">Deletar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <input type="submit" value="Cadastrar" onclick="location.href = '{% url 'mainLivros:create' %}'" class="btn btn-sm btn-primary">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
